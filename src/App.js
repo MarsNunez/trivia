@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import GetName from "./components/GetName";
+import Questions from "./components/Question";
 
 function App() {
+  const [name, setName] = useState("Sin nombre");
+  const [showNameComponent, setShowNameComponent] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <nav className="text-yellow-500 font-semibold text-2xl bg-red-600 text-center py-5">
+        Juego de Trivia 🧠
+      </nav>
+      {showNameComponent && (
+        <GetName
+          setName={setName}
+          setShowNameComponent={setShowNameComponent}
+        />
+      )}
+      {!showNameComponent && <Questions name={name} />}
     </div>
   );
 }
